@@ -21,7 +21,7 @@ void main() async {
   cameras = await availableCameras();
   await modelYukle();
   await tts.setLanguage('tr-TR');
-  await tts.setSpeechRate(0.8);
+  await tts.setSpeechRate(0.6);
   await tts.setVolume(1.0);
   runApp(const EserTanimaApp());
 }
@@ -362,7 +362,7 @@ class _KameraEkraniState extends State<KameraEkrani> {
       String fotoYolu, Uint8List bytes, String modelEseri, bool modeldenTandi,
       {bool gorselsiz = false}) async {
     try {
-      const apiKey = 'OPENAI_KEY_BURAYA';
+      
 
       final modelIpucu = modeldenTandi
           ? 'ÖNEMLİ: Özel eğitilmiş görüntü tanıma modelim bu eserin KESİNLİKLE "$modelEseri" olduğunu tespit etti. Bu bilgiyi kullan.'
@@ -423,10 +423,10 @@ Eğer tarihi eser yoksa: BULUNAMADI''';
       }
 
       final response = await http.post(
-        Uri.parse('https://api.openai.com/v1/chat/completions'),
+        Uri.parse('https://bitirme-odevi.onrender.com/chat'),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer $apiKey',
+      
         },
         body: jsonEncode({
           'model': gorselsiz ? 'gpt-4o-mini' : 'gpt-4o-mini',
